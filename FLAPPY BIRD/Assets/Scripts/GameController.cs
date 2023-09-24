@@ -12,7 +12,7 @@ public class GameController : MonoBehaviour
     {
         Time.timeScale = 1;
         scoreCanvas.SetActive(true);
-        gameOverCanvas.SetActive(false)
+        gameOverCanvas.SetActive(false);
         spawner.SetActive(true);
     }
 
@@ -26,5 +26,6 @@ public class GameController : MonoBehaviour
     gameOverCanvas.SetActive(true);
     spawner.SetActive(false);
     Time.timeScale = 0;
+    
     }
 }
