@@ -6,24 +6,25 @@ public class Spawner : MonoBehaviour
 {
     public float objectSpeed = 8f;
 
-    private List<GameObject> -activeObjects;
+    private List<GameObject> _activeObjects;
 
     void Start()
     {
-        
+        _activeObjects = new List<GameObject>();
+        StartCoroutine(Spawn());
     }
 
     // Update is called once per frame
     void Update()
     {
         Vector3 movement = objectSpeed * Time.deltaTime * Vector3.left;
-        foreach (GameObjectactiveObject in _activeObjects)
+        foreach (GameObject activeObject in _activeObjects)
         {
             activeObject.transform.position += movement;
 
-            GameManage.UpdateScore(movement);
+            GameManager.UpdateScore(movement);
         }
-
+    }
         IEnumerator Spawn()
         {
             GameManager.UpdateList(_activeObjects);
@@ -31,11 +32,8 @@ public class Spawner : MonoBehaviour
             GameObject challengeObject = Instantiate(GameManager.GetChallengeObject());
             challengeObject.transform.position = new Vector3(GameManager.ScreenBounds.x, 0);
             _activeObjects.Add(challengeObject);
-
-            challengeObject script.GetComponent<challengeObject>();
-
-            yeild return new WaitForSeconds(script.challengeTime);
+            ChallengeObject script = challengeObject.GetComponent<ChallengeObject>();
+            yield return new WaitForSeconds(script.challengeTime);
             StartCoroutine(Spawn());
         }
-    }
 }
