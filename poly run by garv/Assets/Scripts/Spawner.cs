@@ -25,15 +25,15 @@ public class Spawner : MonoBehaviour
             GameManager.UpdateScore(movement);
         }
     }
-        IEnumerator Spawn()
-        {
-            GameManager.UpdateList(_activeObjects);
+    IEnumerator Spawn()
+    {
+        GameManager.UpdateList(_activeObjects);
 
-            GameObject challengeObject = Instantiate(GameManager.GetChallengeObject());
-            challengeObject.transform.position = new Vector3(GameManager.ScreenBounds.x, 0);
-            _activeObjects.Add(challengeObject);
-            ChallengeObject script = challengeObject.GetComponent<ChallengeObject>();
-            yield return new WaitForSeconds(script.challengeTime);
-            StartCoroutine(Spawn());
-        }
+        GameObject challengeObject = Instantiate(GameManager.GetChallengeObject());
+        challengeObject.transform.position = new Vector3(GameManager.ScreenBounds.x, 0);
+        _activeObjects.Add(challengeObject);
+        ChallengeObject script = challengeObject.GetComponent<ChallengeObject>();
+        yield return new WaitForSeconds(script.challengeTime);
+        StartCoroutine(Spawn());
+    }
 }

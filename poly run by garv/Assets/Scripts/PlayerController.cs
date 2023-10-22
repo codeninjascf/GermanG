@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void onCollisionEnter2D(Collision2D other)
+    void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("Ground"))
         {
@@ -42,7 +42,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void onCollisionStay2D(Collision2D other)
+    void OnCollisionStay2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("Ground"))
         {
@@ -50,7 +50,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void onCollisionExit2D(Collision2D other)
+    void OnCollisionExit2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("Ground"))
         {
