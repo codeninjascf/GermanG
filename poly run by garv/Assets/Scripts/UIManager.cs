@@ -19,7 +19,7 @@ public class UIManager : MonoBehaviour
 
     void Start()
     {
-        scoreText.gameObject.SetActive(false);
+        scoreText.gameObject.SetActive(true);
         mainMenu.SetActive(true);
         gameOverMenu.SetActive(false);
 

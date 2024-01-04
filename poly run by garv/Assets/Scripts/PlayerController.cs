@@ -58,7 +58,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void OnTiggerEnter2D(Collision2D other)
+    void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Coin"))
         {
