@@ -9,7 +9,7 @@ public class PlatformController : MonoBehaviour
 
     private bool _activated;
 
-    private GameObject _platformEnemy
+    private GameObject _platformEnemy;
     private Transform _player;
     private PlatformSettings _platformSettings;
     void Start()
@@ -20,9 +20,9 @@ public class PlatformController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       if(PlayerController.position.y - transform.position.y >= 5f)
+       if(_player.position.y - transform.position.y >= 5f)
         {
-            if(_platformEnemy !=  null) _platformEnemy.SetActive(false):
+            if (_platformEnemy != null) _platformEnemy.SetActive(false);
 
             gameObject.SetActive(false);
         }
@@ -32,7 +32,7 @@ public class PlatformController : MonoBehaviour
     void Awake()
     {
         _platformSettings = GetComponent<PlatformSettings>();
-        _player = FindOnjectsOfType<PlayerController>().transform;
+        _player = FindObjectOfType<PlayerController>().transform;
     }
     public void InitialisePlatform()
     {
@@ -45,8 +45,8 @@ public class PlatformController : MonoBehaviour
 
         float randomPos = Random.Range(-2f, 2f);
 
-        enemies[enemy].transform.position - new Vector3(randomPos, enemySpawner.position.y);
-        eneimes[enemy].SetActive(true);
+        enemies[enemy].transform.position = new Vector3(randomPos, enemySpawner.position.y);
+        enemies[enemy].SetActive(true);
 
         _platformEnemy = enemies[enemy];
     }
@@ -55,7 +55,14 @@ public class PlatformController : MonoBehaviour
         if(other.CompareTag("Player") && !_activated)
         {
             _activated = true;
+
             _platformSettings.SetGreen();
+
+            if (GameManager.Instance.gameStarted)
+            {
+                GameManager.Instance.currentScore++;
+                _platformSettings.SetHighScore();
+            }
 
         }
     }
