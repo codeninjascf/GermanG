@@ -6,11 +6,11 @@ public class DoorTrigger : MonoBehaviour
 {
     public DoorSwitch[] switches;
 
-    private bool opened;
+    private bool _opened;
     private Animator _animator;
     void Start()
     {
-        _animator - GetComponent<Animator>();
+        _animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame

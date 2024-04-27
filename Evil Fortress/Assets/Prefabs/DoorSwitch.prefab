@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7408438089255424857}
   - component: {fileID: 7408438089255424858}
-  - component: {fileID: 4931345187010979704}
   - component: {fileID: 6094723753362721824}
+  - component: {fileID: 7939457130481782241}
   m_Layer: 0
   m_Name: DoorSwitch
   m_TagString: Untagged
@@ -57,19 +57,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 3, y: 3, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4931345187010979704
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7408438089255424860}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27b0c2e5ac1c3094395bbc486553be8c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  range: 50
 --- !u!114 &6094723753362721824
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -84,6 +71,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enabledObject: {fileID: 7408438089862690933}
   disabledObject: {fileID: 7408438090101543315}
+--- !u!114 &7939457130481782241
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7408438089255424860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56fa63b70affec942851e2e6e0769c53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  switches:
+  - {fileID: 6094723753362721824}
 --- !u!1 &7408438089862690933
 GameObject:
   m_ObjectHideFlags: 0
