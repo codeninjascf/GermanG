@@ -8,6 +8,8 @@ public class DoorTrigger : MonoBehaviour
 
     private bool _opened;
     private Animator _animator;
+
+    private AudioSource _audioSource;
     void Start()
     {
         _animator = GetComponent<Animator>();
@@ -29,8 +31,10 @@ public class DoorTrigger : MonoBehaviour
                 {
                     _animator.SetBool("DoorActivate", true);
                     _opened = true;
-                }
+
+                    _audioSource.Play();
             }
         }
+    }
     }
 }
