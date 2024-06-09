@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
+
 
 public class GameManager : MonoBehaviour
 {
@@ -38,7 +40,7 @@ public class GameManager : MonoBehaviour
         }
         else if(level.type == LevelType.Time)
         {
-            double timeRemaining = Mathf.Max(level.TimeRemaining, 0);
+            double timeRemaining = Math.Max(level.TimeRemaining, 0);
             TimeSpan time = TimeSpan.FromSeconds(timeRemaining);
             uiManager.criteriaNumber.text = time.ToString(@"mm:ss");
         }
@@ -59,7 +61,7 @@ public class GameManager : MonoBehaviour
                0 => "Try Again!",
                1 => "Good Job!",
                2 => "Excellent!",
-               3 => "Perfect!",
+               3 => "Perfect!"
             };
 
             uiManager.gameOverText.text = gameOverText;
