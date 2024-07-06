@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
 
     public LayerMask whatIsGround;
 
-    private bool isGrounded;
+    private bool _isGrounded;
     private Rigidbody2D _rigidbody;
 
     void Start()
@@ -22,7 +22,13 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        _isGrounded = Physics2D.Raycast(transform.position, Vector2.down,
+            groundDistanceThreshold, whatIsGround);
+
+        if(_isGrounded && Input.GetButtonDown("Jump"))
+        {
+            _rigidbody.velocity = Vector2.up * jumpForce;
+        }
     }
 
     private void FixedUpdate()
