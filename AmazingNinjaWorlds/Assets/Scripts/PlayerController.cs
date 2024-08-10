@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public GameManager gameManager;
+
     public float moveSpeed = 5f;
     public float jumpForce = 10f;
 
@@ -52,6 +54,15 @@ public class PlayerController : MonoBehaviour
     {
         _enabled = false;
         
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+       if (other.gameObject.CompareTag("Hazards"))
+        {
+            gameManager.KillPlayer();
+        }
+
     }
 
 }
