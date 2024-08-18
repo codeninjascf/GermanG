@@ -10,8 +10,10 @@ public class GameManager : MonoBehaviour
     public CameraFollow cam;
     public Vector3 spawnPosition;
     public Transform[] checkpoints;
+    public Transform{} collectibles;
 
     private int _currentCheckpoint;
+    private bool{} _collectiblesCollected
 
     void Start()
     {

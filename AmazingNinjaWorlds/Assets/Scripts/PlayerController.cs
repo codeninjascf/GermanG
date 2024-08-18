@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
     public GameManager gameManager;
 
     public float moveSpeed = 5f;
-    public float jumpForce = 10f;
+    public float jumpForce = 100f;
 
     public float groundDistanceThreshold = 0.55f;
 
@@ -23,7 +23,6 @@ public class PlayerController : MonoBehaviour
         _enabled = true;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (!_enabled) return;
@@ -62,7 +61,13 @@ public class PlayerController : MonoBehaviour
         {
             gameManager.KillPlayer();
         }
-
     }
 
+    void OntriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Checkpoint"))
+        {
+            gameManager.SetCheckpoint(other.transform);
+        }
+    }
 }
