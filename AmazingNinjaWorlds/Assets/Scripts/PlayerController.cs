@@ -63,11 +63,16 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void OntriggerEnter2D(Collider2D other)
+    void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Checkpoint"))
         {
             gameManager.SetCheckpoint(other.transform);
+        }
+        else if (other.CompareTag("Collectible"))
+        {
+            gameManager.GotCollectible(other.transform);
+            other.gameObject.SetActive(false);
         }
     }
 }

@@ -10,14 +10,15 @@ public class GameManager : MonoBehaviour
     public CameraFollow cam;
     public Vector3 spawnPosition;
     public Transform[] checkpoints;
-    public Transform{} collectibles;
+    public Transform[] collectibles;
 
     private int _currentCheckpoint;
-    private bool{} _collectiblesCollected
+    private bool[] _collectiblesCollected;
 
     void Start()
     {
         _currentCheckpoint = 0;
+    _collectiblesCollected = new bool [3];
     }
 
     // Update is called once per frame
@@ -56,4 +57,12 @@ public class GameManager : MonoBehaviour
         _currentCheckpoint = checkpointNumber;
         }
     }
+
+    public void GotCollectible(Transform collectible)
+    {
+    int collectibleNumber = Array.IndexOf(collectibles, collectible);
+
+    _collectiblesCollected[collectibleNumber] = true;
+    }
 }
+    
