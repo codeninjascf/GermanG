@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         _currentCheckpoint = 0;
-    _collectiblesCollected = new bool [3];
+        _collectiblesCollected = new bool [3];
     }
 
     // Update is called once per frame
@@ -60,9 +60,9 @@ public class GameManager : MonoBehaviour
 
     public void GotCollectible(Transform collectible)
     {
-    int collectibleNumber = Array.IndexOf(collectibles, collectible);
+        int collectibleNumber = Array.IndexOf(collectibles, collectible);
 
-    _collectiblesCollected[collectibleNumber] = true;
+        _collectiblesCollected[collectibleNumber] = true;
     }
 }
     
