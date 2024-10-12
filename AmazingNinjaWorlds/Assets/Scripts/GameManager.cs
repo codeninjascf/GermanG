@@ -5,6 +5,7 @@ using System;
 
 public class GameManager : MonoBehaviour
 {
+    public int levelNumber;
     public float respawnDelay = 1.5f;
     public PlayerController player;
     public CameraFollow cam;
@@ -12,6 +13,8 @@ public class GameManager : MonoBehaviour
     public Transform[] checkpoints;
     public Transform[] collectibles;
     public GameObject deathparticles;
+    public GameObject levelCompleteMenu;
+    public RubiesDisplay rubiesDisplay;
 
     private int _currentCheckpoint;
     private bool[] _collectiblesCollected;
@@ -20,6 +23,9 @@ public class GameManager : MonoBehaviour
     {
         _currentCheckpoint = 0;
         _collectiblesCollected = new bool [3];
+
+        levelCompleteMenu.SetActive(false);
+        rubiesDisplay.levelNumber = levelNumber;
     }
 
     // Update is called once per frame
@@ -71,5 +77,6 @@ public class GameManager : MonoBehaviour
 
         _collectiblesCollected[collectibleNumber] = true;
     }
+    p
 }
     

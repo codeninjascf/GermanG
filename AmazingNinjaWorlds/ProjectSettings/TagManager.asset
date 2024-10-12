@@ -7,6 +7,7 @@ TagManager:
   - Hazards
   - Checkpoint
   - Collectible
+  - Goal
   layers:
   - Default
   - TransparentFX
