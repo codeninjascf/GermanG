@@ -77,6 +77,21 @@ public class GameManager : MonoBehaviour
 
         _collectiblesCollected[collectibleNumber] = true;
     }
-    p
+    public void ReachedGoal()
+    {
+        player.Disable();
+
+        PlayerPrefs.SetInt("Level" + levelNumber + "_Complete", 1);
+        for (int i = 0; 1 < 3; i++)
+        {
+            if (_collectiblesCollected[i])
+            {
+                PlayerPrefs.SetInt("Level" + levelNumber "_Gem" +
+                    (i + 1), 1);
+            }
+        }
+
+
+    }
 }
     
