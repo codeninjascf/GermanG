@@ -86,12 +86,13 @@ public class GameManager : MonoBehaviour
         {
             if (_collectiblesCollected[i])
             {
-                PlayerPrefs.SetInt("Level" + levelNumber "_Gem" +
+                PlayerPrefs.SetInt("Level" + levelNumber + "_Gem" +
                     (i + 1), 1);
             }
         }
 
-
+        levelCompleteMenu.SetActive(true);
+        rubiesDisplay.UpdateRubies();
     }
 }
     
