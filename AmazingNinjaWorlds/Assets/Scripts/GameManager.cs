@@ -2,11 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public int levelNumber;
     public float respawnDelay = 1.5f;
+    public string menuSceneName;
+    public string nextLevelName;
     public PlayerController player;
     public CameraFollow cam;
     public Vector3 spawnPosition;
@@ -82,7 +85,7 @@ public class GameManager : MonoBehaviour
         player.Disable();
 
         PlayerPrefs.SetInt("Level" + levelNumber + "_Complete", 1);
-        for (int i = 0; 1 < 3; i++)
+        for (int i = 0; i < 3; i++)
         {
             if (_collectiblesCollected[i])
             {
@@ -92,6 +95,18 @@ public class GameManager : MonoBehaviour
         }
 
         levelCompleteMenu.SetActive(true);
+        rubiesDisplay.UpdateRubies();
+    }
+    public void LoadMenu()
+    {
+        SceneManager.LoadScene(menuSceneName);
+    }
+
+    public void LoadNextLevel()
+    {
+        SceneManager.LoadScene(nextLevelName);
+        levelCompleteMenu.SetActive(true);
+        levelCompleteMenu.GetComponent<Animator>().SetTrigger("Activate");
         rubiesDisplay.UpdateRubies();
     }
 }
