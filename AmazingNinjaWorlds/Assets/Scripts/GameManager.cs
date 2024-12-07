@@ -95,6 +95,7 @@ public class GameManager : MonoBehaviour
         }
 
         levelCompleteMenu.SetActive(true);
+        levelCompleteMenu.GetComponent<Animator>().SetTrigger("Activate");
         rubiesDisplay.UpdateRubies();
     }
     public void LoadMenu()
@@ -104,9 +105,7 @@ public class GameManager : MonoBehaviour
 
     public void LoadNextLevel()
     {
-        SceneManager.LoadScene(nextLevelName);
-        levelCompleteMenu.SetActive(true);
-        levelCompleteMenu.GetComponent<Animator>().SetTrigger("Activate");
+        SceneManager.LoadScene(nextLevelName);      
         rubiesDisplay.UpdateRubies();
     }
 }
