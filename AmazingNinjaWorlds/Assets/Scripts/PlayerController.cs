@@ -10,14 +10,28 @@ public class PlayerController : MonoBehaviour
     public float jumpForce = 100f;
 
     public float groundDistanceThreshold = 0.55f;
+    public float spiritedHeight = 1.78f;
 
     public LayerMask whatIsGround;
+
+    private bool _gravityFlipped;
 
     private bool _isGrounded;
     private bool _enabled;
     private Rigidbody2D _rigidbody;
     private Animator _animator;
 
+    public bool GravityFlipped
+    {
+        get => _gravityFlipped;
+        set
+        {
+            _gravityFlipped = value;
+
+            int multiplier = value ? -1 : 1;
+        }
+
+    }
     void Start()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
