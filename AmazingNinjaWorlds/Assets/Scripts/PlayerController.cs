@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
     public float jumpForce = 100f;
 
     public float groundDistanceThreshold = 0.55f;
-    public float spiritedHeight = 1.78f;
+    public float spriteHeight = 1.78f;
 
     public LayerMask whatIsGround;
 
@@ -29,6 +29,11 @@ public class PlayerController : MonoBehaviour
             _gravityFlipped = value;
 
             int multiplier = value ? -1 : 1;
+            _rigidbody.gravityScale = multiplier * Mathf.Abs(_rigidbody.gravityScale);
+            jumpForce = multiplier * Mathf.Abs(jumpForce);
+
+            Transform body = transform.GetChild(0);
+            body.localScale = new Vector3(1, multiplier, 1);
         }
 
     }
@@ -36,14 +41,19 @@ public class PlayerController : MonoBehaviour
     {
         _rigidbody = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
+
+        GravityFlipped = false;
         _enabled = true;
     }
 
     void Update()
     {
-        if (!_enabled) return;
-        _isGrounded = Physics2D.Raycast(transform.position, Vector2.down,
-            groundDistanceThreshold, whatIsGround);
+        _isGrounded = !GravityFlipped ?
+        Physics2D.Raycast(transform.position, Vector2.down,
+        groundDistanceThreshold, whatIsGround)
+        : Physics2D.Raycast(transform.position, Vector2.up,
+        groundDistanceThreshold + spriteHeight, whatIsGround);
+
 
         if(_isGrounded && Input.GetButtonDown("Jump"))
         {
@@ -113,6 +123,14 @@ public class PlayerController : MonoBehaviour
         else if (other.CompareTag("Goal"))
         {
             gameManager.ReachedGoal();
+        }
+        else if (other.CompareTag("FlipGravity") && !GravityFlipped)
+        {
+            GravityFlipped = true;
+        }
+        else if (other.CompareTag("RevertGravity") && _gravityFlipped)
+        {
+            GravityFlipped = false;
         }
     }
 }
