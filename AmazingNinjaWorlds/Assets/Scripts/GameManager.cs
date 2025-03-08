@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour
     public float respawnDelay = 1.5f;
     public string menuSceneName;
     public string nextLevelName;
+    public bool shurikensEnabled;
+
     public PlayerController player;
     public CameraFollow cam;
     public Vector3 spawnPosition;
@@ -21,6 +23,7 @@ public class GameManager : MonoBehaviour
 
     private int _currentCheckpoint;
     private bool[] _collectiblesCollected;
+    private int _shuriken;
 
     void Start()
     {

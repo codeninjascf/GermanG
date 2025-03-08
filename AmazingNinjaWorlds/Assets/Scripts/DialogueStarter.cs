@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Dialogue : MonoBehaviour
+public class DialogueStarter : MonoBehaviour
 {
     public DialogueManager dialogueManager;
     public int interaction;
@@ -22,11 +22,11 @@ public class Dialogue : MonoBehaviour
 
     public void OnTriggerEnter2D (Collider2D other)
     {
-        Debug.Log($"{other.name}");
 
         if (_activated || !other.CompareTag("Player")) return;
 
         _activated = true;
+        dialogueManager.gameObject.SetActive(true);
         dialogueManager.StartInteraction(interaction);
     }
 }

@@ -47,7 +47,7 @@ public class DialogueManager : MonoBehaviour
 
     void Start()
     {
-        
+        gameObject.SetActive(false);
     }
 
     void Update()
