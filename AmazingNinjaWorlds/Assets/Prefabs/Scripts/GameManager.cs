@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
     public string menuSceneName;
     public string nextLevelName;
     public bool shurikensEnabled;
+    public string LevelMusicName;
+    public float exitTime = 2f;
 
     public PlayerController player;
     public CameraFollow cam;
@@ -20,10 +22,14 @@ public class GameManager : MonoBehaviour
     public GameObject deathparticles;
     public GameObject levelCompleteMenu;
     public RubiesDisplay rubiesDisplay;
+    public GameObject exitText;
 
     private int _currentCheckpoint;
     private bool[] _collectiblesCollected;
     private int _shuriken;
+    private float _escapeTime;
+
+    private AudioManager _audioManager;
 
     void Start()
     {
@@ -32,12 +38,32 @@ public class GameManager : MonoBehaviour
 
         levelCompleteMenu.SetActive(false);
         rubiesDisplay.levelNumber = levelNumber;
+        exitText.SetActive(false);
+
+        _audioManager = FindObjectOfType<AudioManager>();
+
+        _audioManager.FindAudio(LevelMusicName).loop = true;
+        _audioManager.PlayAudio(LevelMusicName);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            exitText.SetActive(true);
+            _escapeTime += Time.deltaTime;
+        }
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            exitText.SetActive(false);
+            _escapeTime = 0;
+        }
+
+        if(_escapeTime >= exitTime)
+        {
+            LoadMenu();
+        }
     }
 
     public void KillPlayer()

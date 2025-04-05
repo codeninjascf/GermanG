@@ -12,6 +12,7 @@ public class MenuButton : MonoBehaviour
     public Sprite lockedSprite;
     private bool _locked;
     private Image _image;
+    private AudioManager _audioManager;
 
     void Start()
     {
@@ -22,6 +23,11 @@ public class MenuButton : MonoBehaviour
         {
             _locked = false;
             _image.sprite = unlockedSprite;
+
+            _audioManager = FindObjectOfType<AudioManager>();
+
+            _audioManager.FindAudio("MenuMusic").loop = true;
+            _audioManager.PlayAudio("MenuMusic");
 
         }
         else
