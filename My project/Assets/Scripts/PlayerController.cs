@@ -14,6 +14,9 @@ public class PlayerController : MonoBehaviour
 
    public Animator anim;
 
+   public BulletController shotToFire;
+   public Transform shotPoint;
+
     void Start()
     {
         
@@ -23,7 +26,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         
-        {
+        
             theRB.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * moveSpeed, theRB.velocity.y);
 
             if (theRB.velocity.x < 0)
@@ -40,10 +43,15 @@ public class PlayerController : MonoBehaviour
             {
                 theRB.velocity = new Vector2(theRB.velocity.x, jumpForce);
             }
-        }
+        
 
         anim.SetBool("isOnGround", isOnGround);
         anim.SetFloat("speed", Mathf.Abs(theRB.velocity.x));
+
+            if(Input.GetButtonDown("Fire1"))
+        {
+            Instantiate(shotToFire, shotPoint.position, shotPoint.rotation).moveDir = new Vector2(transform.localScale.x, 0f);
+        }
 
     }
 }
