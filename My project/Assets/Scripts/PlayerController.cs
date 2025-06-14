@@ -17,6 +17,11 @@ public class PlayerController : MonoBehaviour
    public BulletController shotToFire;
    public Transform shotPoint;
 
+   private bool canDoubleJump;
+
+    public float dashSpeed, dashTime;
+    private float dashCounter; 
+
     void Start()
     {
         
@@ -25,32 +30,65 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-        
+        if (Input.GetButtonDown("Fire2"))
+        {
+            dashCounter = dashTime;
+        }
+
+        if (dashCounter > 0)
+        {
+                dashCounter = dashCounter - Time.deltaTime;
+
+                theRB.velocity = new Vector2(dashSpeed * transform.localScale.x, theRB.velocity.y);
+        }
+        else
+        {
             theRB.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * moveSpeed, theRB.velocity.y);
 
             if (theRB.velocity.x < 0)
             {
                 transform.localScale = new Vector3(-1f, 1f, 1f);
-            } else if(theRB.velocity.x > 0)
+            }
+            else if (theRB.velocity.x > 0)
             {
                 transform.localScale = Vector3.one;
             }
+        }
 
-            isOnGround = Physics2D.OverlapCircle(groundPoint.position, .2f, whatIsGround);
+        theRB.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * moveSpeed, theRB.velocity.y);
 
-            if(Input.GetButtonDown("Jump") && isOnGround)
+        if (theRB.velocity.x < 0)
+        {
+            transform.localScale = new Vector3(-1f, 1f, 1f);
+        }
+        else if (theRB.velocity.x > 0)
+        {
+            transform.localScale = Vector3.one;
+        }
+
+        isOnGround = Physics2D.OverlapCircle(groundPoint.position, .2f, whatIsGround);
+
+        if (Input.GetButtonDown("Jump") && (isOnGround || canDoubleJump))
+        {
+            if (isOnGround)
             {
-                theRB.velocity = new Vector2(theRB.velocity.x, jumpForce);
+                canDoubleJump = true;
             }
-        
+            else
+            {
+                canDoubleJump = false; 
+            }
+            theRB.velocity = new Vector2(theRB.velocity.x, jumpForce);
+        }
+
 
         anim.SetBool("isOnGround", isOnGround);
         anim.SetFloat("speed", Mathf.Abs(theRB.velocity.x));
 
-            if(Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Fire1"))
         {
             Instantiate(shotToFire, shotPoint.position, shotPoint.rotation).moveDir = new Vector2(transform.localScale.x, 0f);
+            anim.SetTrigger("shotFired");
         }
 
     }

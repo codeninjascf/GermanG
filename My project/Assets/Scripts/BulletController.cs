@@ -26,7 +26,7 @@ public class BulletController : MonoBehaviour
     {
         if (impactEffect != null)
         {
-            Instantiate(impactEffect, transform.position, Quaternion.identity);
+            Destroy(Instantiate(impactEffect, transform.position, Quaternion.identity),1f);
         }
 
         Destroy(gameObject);
