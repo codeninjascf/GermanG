@@ -20,7 +20,12 @@ public class PlayerController : MonoBehaviour
    private bool canDoubleJump;
 
     public float dashSpeed, dashTime;
-    private float dashCounter; 
+    private float dashCounter;
+
+    public SpriteRenderer theSR, afterImage;
+    public float afterImageLifetime, timeBetweenAfterImages;
+    private float afterImageCounter;
+    public Color afterImageColor;
 
     void Start()
     {
@@ -33,6 +38,8 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButtonDown("Fire2"))
         {
             dashCounter = dashTime;
+
+            ShowAfterImage();
         }
 
         if (dashCounter > 0)
@@ -40,6 +47,12 @@ public class PlayerController : MonoBehaviour
                 dashCounter = dashCounter - Time.deltaTime;
 
                 theRB.velocity = new Vector2(dashSpeed * transform.localScale.x, theRB.velocity.y);
+
+                afterImageCounter -= Time.deltaTime;
+            if (afterImageCounter <= 0)
+            {
+                ShowAfterImage();
+            }
         }
         else
         {
@@ -92,4 +105,17 @@ public class PlayerController : MonoBehaviour
         }
 
     }
+
+    public void ShowAfterImage()
+    {
+        SpriteRenderer image = Instantiate(afterImage, transform.position, transform.rotation);
+        image.sprite = theSR.sprite;
+        image.transform.localScale = transform.localScale;
+        image.color = afterImage.color;
+
+        Destroy(image.gameObject, afterImageLifetime);
+
+        afterImageCounter = timeBetweenAfterImages;
+    }
+
 }

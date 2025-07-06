@@ -257,8 +257,13 @@ MonoBehaviour:
   anim: {fileID: 879092139}
   shotToFire: {fileID: 5833482705393944149, guid: 2a6dd45a374b1694bbd0ff8eb12a3963, type: 3}
   shotPoint: {fileID: 925702313}
-  dashSpeed: 0
-  dashTime: 0
+  dashSpeed: 25
+  dashTime: 0.2
+  theSR: {fileID: 879092138}
+  afterImage: {fileID: 1309175451724294675, guid: ebab71cbcc987104d999c983091b76a2, type: 3}
+  afterImageLifetime: 0.5
+  timeBetweenAfterImages: 0.033
+  afterImageColor: {r: 0, g: 0.90351677, b: 1, a: 0}
 --- !u!50 &113469432
 Rigidbody2D:
   serializedVersion: 4
@@ -393,8 +398,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -941141245
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 7815371044791450175, guid: 3607ff319a5a56141aa94c66e33ca304, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
